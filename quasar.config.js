@@ -119,8 +119,8 @@ module.exports = configure(function (/* ctx */) {
     animations: [],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
-    // sourceFiles: {
-    //   rootComponent: 'src/App.vue',
+    sourceFiles: {
+      rootComponent: 'src/app/App.vue',
     //   router: 'src/router/index',
     //   store: 'src/store/index',
     //   registerServiceWorker: 'src-pwa/register-service-worker',
@@ -128,7 +128,7 @@ module.exports = configure(function (/* ctx */) {
     //   pwaManifestFile: 'src-pwa/manifest.json',
     //   electronMain: 'src-electron/electron-main',
     //   electronPreload: 'src-electron/electron-preload'
-    // },
+    },
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
     ssr: {
