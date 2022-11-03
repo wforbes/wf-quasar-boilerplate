@@ -1,10 +1,10 @@
 import { useAppStore } from 'src/app/stores/appModule';
-import { AppEnvironment } from 'src/models/models';
+import { AppEnvironment, User } from 'src/models/models';
 import ApiDataAccess from './ApiDataAccess';
 import LocalDataAccess from './LocalDataAccess';
 
 export default class DataAccess {
-  private dataContext;
+  dataContext;
   constructor() {
     const store = useAppStore();
     if (store.currentEnv === AppEnvironment.LOCAL) {
@@ -12,5 +12,13 @@ export default class DataAccess {
       return;
     }
     this.dataContext = new ApiDataAccess();
+  }
+
+  addUser(user: User) {
+    return this.dataContext.addUser(user);
+  }
+
+  getUsers() {
+    return this.dataContext.getUsers();
   }
 }

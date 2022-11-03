@@ -1,11 +1,9 @@
 {
   "extends": "@quasar/app-vite/tsconfig-preset",
   "compilerOptions": {
-    "strictNullChecks": true,
     "baseUrl": ".",
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "noImplicitAny": false, // ts training wheels, yay
+    "strictPropertyInitialization": false, // ts training wheels, yay
     "lib": ["es5", "es6"],
     "module": "CommonJS",
     "moduleResolution": "node",

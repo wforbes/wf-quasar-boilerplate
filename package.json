@@ -16,6 +16,8 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
+    "dexie": "^3.2.2",
+    "guid-typescript": "^1.0.9",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
