@@ -1,23 +1,26 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="row justify-center">
+    <div class="col-sm-9">
+      <app-banner />
+      <data-access-playground />
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from '@/app/components/models';
-import ExampleComponent from '@/app/components/ExampleComponent.vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
+import { useAppStore } from '@/app/stores/appModule';
+import AppBanner from '@/app/components/AppBanner.vue';
+import DataAccessPlayground from '@/data/components/DataAccessPlayground.vue';
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { ExampleComponent },
+  components: { AppBanner, DataAccessPlayground },
   setup() {
+    const appStore = useAppStore();
+    appStore.setupStore();
+
+    /* quasar scaffold cruff
     const todos = ref<Todo[]>([
       {
         id: 1,
@@ -44,6 +47,7 @@ export default defineComponent({
       totalCount: 1200,
     });
     return { todos, meta };
+    */
   },
 });
 </script>
