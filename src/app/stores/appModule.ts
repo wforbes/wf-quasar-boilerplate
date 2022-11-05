@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { Guid } from 'guid-typescript';
-import DataAccess from 'src/data/DataAccess';
 import { AppEnvironment, User } from 'src/models/models';
+import DataAccess from '@/data/DataAccess';
 
-interface AppState {
+export interface AppState {
 	appNameAbbr: string;
 	localhostUrl: string; //this dev env client url
 	localApiUrl: string; //dev env api url
@@ -11,7 +11,7 @@ interface AppState {
 	prodApiUrl: string; //prod env api url
 	clientUrl: string; // current client url
 	apiUrl: string; // current api url
-	dataAccess: null | DataAccess; // from src/data dir,
+	dataAccess: any;
 	users: any[]; //TODO: figure out why I can't define as User[]
 }
 
@@ -24,7 +24,7 @@ export const useAppStore = defineStore('app', {
 		prodApiUrl: '', //prod env api url
 		clientUrl: '', // current client url
 		apiUrl: '', // current api url
-		dataAccess: null, // from src/data dir
+		dataAccess: null,
 		users: [] as User[],
 	}),
 	getters: {
@@ -45,28 +45,31 @@ export const useAppStore = defineStore('app', {
 				dispatch('initDemo');
       */
 		},
+		setDataAccess() {
+			this.dataAccess = new DataAccess();
+		},
 		setClientUrl() {
 			this.clientUrl = this.localhostUrl.includes(window.location.host)
 				? this.localhostUrl
 				: this.prodClientUrl;
 		},
-		setDataAccess() {
-			this.dataAccess = new DataAccess();
-		},
-		async addTestUser(user: User) {
+		addTestUser(user: User) {
 			user.guid = Guid.create();
-			const response = await this.dataAccess?.addUser(user);
-			console.log(response);
-			if (typeof response == 'number') {
-				this.users.push(user);
-			}
-			return Promise.resolve();
+			return this.dataAccess?.addUser(user).then((response: any) => {
+				console.log(response);
+				if (typeof response == 'number') {
+					this.users.push(user);
+				}
+				return Promise.resolve();
+			});
 		},
-		async loadUsers() {
-			const users = await this.dataAccess?.getUsers();
-			if (typeof users !== 'undefined') {
-				this.users = users;
-			}
+		loadUsers() {
+			console.log('loadUsers');
+			return this.dataAccess?.getUsers().then((users: User[]) => {
+				if (typeof users !== 'undefined') {
+					this.users = users;
+				}
+			});
 		},
 	},
 });

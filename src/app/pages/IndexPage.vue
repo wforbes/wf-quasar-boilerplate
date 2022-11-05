@@ -1,26 +1,24 @@
 <template>
-  <q-page class="row justify-center">
-    <div class="col-sm-9">
-      <app-banner />
-      <data-access-playground />
-    </div>
-  </q-page>
+	<q-page class="row justify-center">
+		<div class="col-sm-9">
+			<app-banner />
+		</div>
+	</q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useAppStore } from '@/app/stores/appModule';
 import AppBanner from '@/app/components/AppBanner.vue';
-import DataAccessPlayground from '@/data/components/DataAccessPlayground.vue';
 
 export default defineComponent({
-  name: 'IndexPage',
-  components: { AppBanner, DataAccessPlayground },
-  setup() {
-    const appStore = useAppStore();
-    appStore.setupStore();
+	name: 'IndexPage',
+	components: { AppBanner },
+	setup() {
+		const appStore = useAppStore();
+		appStore.setupStore();
 
-    /* quasar scaffold cruff
+		/* quasar scaffold cruff
     const todos = ref<Todo[]>([
       {
         id: 1,
@@ -48,6 +46,6 @@ export default defineComponent({
     });
     return { todos, meta };
     */
-  },
+	},
 });
 </script>
