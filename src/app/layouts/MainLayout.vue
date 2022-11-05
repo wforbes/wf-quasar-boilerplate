@@ -4,7 +4,7 @@
 			<AppBar @toggleNavMenu="toggleNavMenuOpen" />
 		</q-header>
 		<NavMenu :navMenuOpen="navMenuOpen" @closeNavMenu="toggleNavMenuOpen" />
-		<q-page-container class="page-gutter">
+		<q-page-container class="q-mx-lg">
 			<router-view />
 		</q-page-container>
 	</q-layout>

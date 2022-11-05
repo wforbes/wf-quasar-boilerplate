@@ -1,7 +1,7 @@
 <template>
 	<q-drawer v-model="isOpen" bordered dark>
 		<q-list>
-			<q-item header tag="a" :to="'/'">
+			<q-item header tag="a" :to="'/'" @click="closeMenu">
 				<q-item-section avatar>
 					<q-img
 						:src="logoIcon"
@@ -19,6 +19,7 @@
 				v-for="link in navLinks"
 				:key="link.title"
 				v-bind="link"
+				@click="closeMenu"
 			/>
 		</q-list>
 	</q-drawer>
@@ -46,6 +47,9 @@ const isOpen = computed({
 		}
 	},
 });
+const closeMenu = () => {
+	isOpen.value = false;
+};
 
 const appNameAbbr = useAppStore().appNameAbbr;
 const logoIcon = logoIconSmall;
