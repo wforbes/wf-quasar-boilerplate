@@ -1,5 +1,5 @@
 <template>
-	<q-toolbar class="row bg-primary glossy q-pt-sm q-pb-sm">
+	<q-toolbar class="row bg-primary q-pt-sm q-pb-sm">
 		<q-btn
 			flat
 			dense
@@ -19,10 +19,12 @@
 				alt="Viper icon"
 			/>
 		</router-link>
-		<q-space />
-		<div>Mid section placeholder</div>
-		<q-space />
-		<div>Right section placeholder</div>
+		<!--
+			<q-space />
+			<div>Mid section placeholder</div>
+			<q-space />
+			<div>Right section placeholder</div>
+		-->
 	</q-toolbar>
 </template>
 <script>
